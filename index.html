@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Network Analyzer Pro</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="loader">
+<h1>Network Analyzer Pro</h1>
+</div>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h2>Network Analyzer</h2>
+
+</div>
+
+<ul>
+
+<li class="active">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>Dashboard</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-network-wired"></i>
+
+<span>IP Lookup</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-globe"></i>
+
+<span>DNS Lookup</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-route"></i>
+
+<span>Traceroute</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-satellite-dish"></i>
+
+<span>Ping Test</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-plug-circle-check"></i>
+
+<span>Port Scanner</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-user-secret"></i>
+
+<span>WHOIS</span>
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+
+<main>
+
+<header>
+
+<div>
+
+<h1>Cyber Security Dashboard</h1>
+
+<p>Educational Frontend Project</p>
+
+</div>
+
+<div class="status">
+
+<div class="online"></div>
+
+<span>System Online</span>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+<h3>Packets Sent</h3>
+
+<h2 id="sentPackets">12043</h2>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-arrow-down"></i>
+
+<h3>Packets Received</h3>
+
+<h2 id="receivedPackets">15621</h2>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-computer"></i>
+
+<h3>Active Devices</h3>
+
+<h2>17</h2>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-gauge-high"></i>
+
+<h3>Latency</h3>
+
+<h2>22 ms</h2>
+
+</div>
+
+</section>
+
+<section class="graph">
+
+<canvas id="trafficChart"></canvas>
+
+</section>
+
+<section class="tools">
+
+<!-- IP Lookup -->
+
+<div class="tool">
+
+<h2>
+
+<i class="fa-solid fa-network-wired"></i>
+
+IP Lookup
+
+</h2>
+
+<input
+type="text"
+id="ipInput"
+placeholder="Enter IP Address">
+
+<button id="ipBtn">
+
+Lookup
+
+</button>
+
+<div id="ipResult"></div>
+
+</div>
+
+<!-- DNS -->
+
+<div class="tool">
+
+<h2>
+
+<i class="fa-solid fa-globe"></i>
+
+DNS Lookup
+
+</h2>
+
+<input
+type="text"
+id="dnsInput"
+placeholder="example.com">
+
+<button id="dnsBtn">
+
+Lookup
+
+</button>
+
+<div id="dnsResult"></div>
+
+</div>
+<!-- Ping Test -->
+
+<div class="tool">
+
+    <h2>
+        <i class="fa-solid fa-satellite-dish"></i>
+        Ping Test
+    </h2>
+
+    <input
+        type="text"
+        id="pingInput"
+        placeholder="google.com">
+
+    <button id="pingBtn">
+        Ping
+    </button>
+
+    <div id="pingResult"></div>
+
+</div>
+
+<!-- Port Scanner -->
+
+<div class="tool">
+
+    <h2>
+        <i class="fa-solid fa-plug-circle-check"></i>
+        Port Scanner
+    </h2>
+
+    <input
+        type="text"
+        id="portInput"
+        placeholder="192.168.1.1">
+
+    <button id="portBtn">
+        Scan
+    </button>
+
+    <div id="portResult">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Port</th>
+                    <th>Service</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="portTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="tools">
+
+<!-- WHOIS -->
+
+<div class="tool">
+
+    <h2>
+        <i class="fa-solid fa-user-secret"></i>
+        WHOIS Lookup
+    </h2>
+
+    <input
+        type="text"
+        id="whoisInput"
+        placeholder="example.com">
+
+    <button id="whoisBtn">
+        Search
+    </button>
+
+    <div id="whoisResult"></div>
+
+</div>
+
+<!-- Traceroute -->
+
+<div class="tool">
+
+    <h2>
+        <i class="fa-solid fa-route"></i>
+        Traceroute
+    </h2>
+
+    <input
+        type="text"
+        id="traceInput"
+        placeholder="google.com">
+
+    <button id="traceBtn">
+        Start
+    </button>
+
+    <div id="traceResult"></div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="card">
+
+<h3>CPU Usage</h3>
+
+<canvas id="cpuChart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h3>Memory Usage</h3>
+
+<canvas id="memoryChart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h3>Upload Speed</h3>
+
+<h2 id="uploadSpeed">86 Mbps</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Download Speed</h3>
+
+<h2 id="downloadSpeed">143 Mbps</h2>
+
+</div>
+
+</section>
+<!-- Live Activity -->
+
+<section class="activity">
+
+    <div class="tool">
+
+        <h2>
+            <i class="fa-solid fa-wave-square"></i>
+            Live Network Activity
+        </h2>
+
+        <div class="activity-box">
+
+            <p>✔ Device Connected : 192.168.1.2</p>
+            <p>✔ HTTP Request Sent</p>
+            <p>✔ DNS Resolved Successfully</p>
+            <p>✔ ICMP Packet Received</p>
+            <p>✔ SSH Connection Active</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <h3>Network Analyzer Pro</h3>
+
+    <p>
+        Educational Frontend Project |
+        Built using HTML, CSS, JavaScript & Chart.js
+    </p>
+
+    <p>
+        This application is created for educational purposes only.
+        It does not collect, store or transmit any personal information.
+    </p>
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="api.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
